@@ -1,17 +1,17 @@
 # Grokbot for Omarchy
 
-A standalone Omarchy community theme with a black, silver, and cyan flight-deck aesthetic, four original 4K wallpapers, and optional Grok Bot desktop integration. Theme files live at the repository root; `grokbot/` contains the scratchpad, Waybar module, launcher, and notification rules.
+A standalone Omarchy community theme with a black, silver, and cyan flight-deck aesthetic, nine rotating 4K wallpapers, and optional Grok Bot desktop integration. Theme files live at the repository root; `grokbot/` contains the scratchpad, Waybar module, launcher, and notification rules.
 
 Community theme, not affiliated with or endorsed by xAI, SpaceX, or Omarchy.
 
 ![Desktop mockup](preview.png)
 
-`preview.png` is a 1920×1080 screenshot-style mockup, composed in `preview.svg`, not a captured desktop. `mark.svg` and its 1024×1024 `mark.png` render are an original mission badge. `backgrounds/` contains four standalone SVG wallpapers and their 3840×2160 PNG renders.
+`preview.png` is a 1920×1080 screenshot-style mockup, composed in `preview.svg`, not a captured desktop. `mark.svg` and its 1024×1024 `mark.png` render are an original mission badge. `backgrounds/` contains nine 3840×2160 JPEG wallpapers that rotate with Omarchy's background switcher: eight images generated with Grok Imagine and one SpaceX launch photo.
 
 ## Install
 
 ```bash
-omarchy-theme-install https://github.com/pow3r-droid/omarchy-grokbot-theme
+omarchy theme install https://github.com/pow3r-droid/omarchy-grokbot-theme
 ```
 
 For a manual copy, run from this checkout (the destination must not already exist):
@@ -87,3 +87,9 @@ With `rsvg-convert` installed, `python3 tools/build_assets.py` rebuilds the orig
 For a community theme listing, use the repository URL, `preview.png` as the preview, and `mark.png` as the badge. Describe it as an independent community project; listing submission is separate from packaging this repository.
 
 Licensed under MIT; see [LICENSE](LICENSE). Release history: [CHANGELOG.md](CHANGELOG.md).
+
+
+## Wallpaper credits
+
+- `01`–`08`: generated with Grok Imagine by the theme author.
+- `09-spacex-launch.jpg`: photo by [SpaceX on Unsplash](https://unsplash.com/photos/rocket-launch-trail-in-night-sky-6SbFGnQTE8s), used under the [Unsplash License](https://unsplash.com/license). Its use here does not imply endorsement by SpaceX.

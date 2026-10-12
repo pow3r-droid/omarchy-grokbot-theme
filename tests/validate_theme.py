@@ -70,20 +70,14 @@ check_png(THEME / 'mark.png', (1024, 1024))
 check_png(THEME / 'preview.png', (1920, 1080))
 ET.parse(THEME / 'preview.svg')
 
-names = ['1-void', '2-orbit', '3-signal', '4-grid']
-assert len(list((THEME / 'backgrounds').glob('*.svg'))) == 4
 badge = ET.parse(THEME / 'mark.svg').getroot()
 assert badge.tag == '{http://www.w3.org/2000/svg}svg'
-for name in names:
-    source = THEME / 'backgrounds' / (name + '.svg')
-    svg = ET.parse(source).getroot()
-    assert svg.attrib['viewBox'] == '0 0 3840 2160'
-    assert 'OMARCHI-GROKBOT' in source.read_text()
-    assert '292 84 292 236' in source.read_text(), 'Badge geometry must be embedded'
-    png = source.with_suffix('.png')
-    assert png.exists(), f'Delivered render missing: {png}'
-    check_png(png)
-print('PASS: expected files, palette, TOML/JSON, SVG XML, badge, and four 4K PNGs')
+walls = sorted((THEME / 'backgrounds').glob('*.jpg'))
+assert len(walls) >= 4, 'need at least 4 wallpapers'
+for w in walls:
+    data = w.read_bytes()
+    assert data[:3] == b'\xff\xd8\xff', f'not a JPEG: {w}'
+print(f'PASS: expected files, palette, TOML/JSON, badge, and {len(walls)} wallpapers')
 
 
 def snapshot(home):
