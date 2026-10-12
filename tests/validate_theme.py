@@ -16,7 +16,7 @@ THEME = ROOT
 CLI = ROOT / 'bin/omarchi-grokbot'
 EXPECTED = '''colors.toml palette.json colors.md alacritty.toml ghostty.conf kitty.conf
 foot.ini hyprland.conf hyprlock.conf waybar.css walker.css mako.ini swayosd.css btop.theme
-neovim.lua icons.theme chromium.theme mark.svg mark.png preview.svg preview.png grokbot/hyprland/scratchpad.conf
+neovim.lua icons.theme chromium.theme mark.svg mark.png preview.svg preview.png grokbot/hyprland/scratchpad.conf grokbot/hyprland/grokbot.lua hyprland.lua
 grokbot/waybar/config-snippet.jsonc grokbot/waybar/style-snippet.css
 grokbot/waybar/grokbot-status.sh grokbot/waybar/grokbot-open.sh
 grokbot/waybar/grokbot-screenshot.sh grokbot/walker/grokbot.desktop
