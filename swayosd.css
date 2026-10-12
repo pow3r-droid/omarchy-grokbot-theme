@@ -1,0 +1,9 @@
+@define-color background-color #0a0a0b;
+@define-color border-color #343a40;
+@define-color label #e6e6e6;
+@define-color image #e6e6e6;
+@define-color progress #4fd1ff;
+window { background: @background-color; border: 1px solid @border-color; border-radius: 0; }
+label { color: @label; }
+image { color: @image; }
+progressbar progress { background: @progress; }

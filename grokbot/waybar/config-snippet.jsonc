@@ -1,0 +1,10 @@
+{
+  "custom/grokbot": {
+    "exec": "bash ~/.config/omarchy/current/theme/grokbot/waybar/grokbot-status.sh",
+    "return-type": "json",
+    "interval": 30,
+    "on-click": "bash ~/.config/omarchy/current/theme/grokbot/waybar/grokbot-open.sh",
+    "on-click-right": "hyprctl dispatch togglespecialworkspace grokbot",
+    "tooltip": true
+  }
+}

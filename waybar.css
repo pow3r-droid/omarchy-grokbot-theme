@@ -1,0 +1,7 @@
+@define-color background #0a0a0b;
+@define-color foreground #e6e6e6;
+@define-color accent #4fd1ff;
+@define-color muted #87919a;
+window#waybar { background: @background; color: @foreground; }
+#workspaces button.active { color: @accent; border-bottom: 1px solid @accent; }
+tooltip { background: @background; border: 1px solid @muted; }

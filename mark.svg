@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320"><g fill="none" stroke="#87919a" stroke-width="2">
+<path d="M160 8 292 84 292 236 160 312 28 236 28 84Z"/>
+<path d="M160 28 274 94 274 226 160 292 46 226 46 94Z"/>
+<circle cx="160" cy="145" r="65"/><ellipse cx="160" cy="145" rx="100" ry="24" transform="rotate(-32 160 145)"/>
+<path stroke="#4fd1ff" d="M160 70V220M85 145H235"/>
+<path d="M145 130 160 116 175 130 175 160 160 174 145 160Z"/>
+</g><text x="160" y="250" text-anchor="middle" font-family="monospace" font-size="19" fill="#ffffff">OMARCHI-GROKBOT</text></svg>

@@ -1,0 +1,11 @@
+@define-color window_bg_color #0a0a0b;
+@define-color accent_bg_color #4fd1ff;
+@define-color theme_fg_color #e6e6e6;
+@define-color theme_bg_color #0a0a0b;
+@define-color accent_color #4fd1ff;
+@define-color selected_bg_color #24282c;
+@define-color selected_fg_color #ffffff;
+@define-color borders #343a40;
+window { background: @window_bg_color; color: @theme_fg_color; font-family: monospace; }
+.box { border: 1px solid @borders; }
+.item:selected { background: @selected_bg_color; color: @selected_fg_color; }

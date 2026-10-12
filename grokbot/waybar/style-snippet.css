@@ -1,0 +1,3 @@
+#custom-grokbot { font-family: monospace; color: #87919a; padding: 0 10px; border-bottom: 1px solid #343a40; }
+#custom-grokbot.ready { color: #4fd1ff; }
+#custom-grokbot:hover { background: #24282c; color: #ffffff; }

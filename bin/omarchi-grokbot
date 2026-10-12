@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+command_name=${1:-help}
+if (($#)); then shift; fi
+write=false
+for argument in "$@"; do
+    case "$argument" in
+        --yes) write=true ;;
+        *) printf 'Unknown option: %s\n' "$argument" >&2; exit 2 ;;
+    esac
+done
+: "${HOME:?HOME must be set}"
+[[ $HOME == /* && $HOME != / ]] || { echo 'HOME must be an absolute non-root directory.' >&2; exit 2; }
+target="$HOME/.config/omarchy/themes/grokbot"
+case "$command_name" in
+    install)
+        printf 'Copy %s to %s\n' "$root" "$target"
+        if $write; then
+            [[ ! -e $target && ! -L $target ]] || { echo 'Refusing to overwrite an existing theme; move it aside first.' >&2; exit 1; }
+            for directory in "$HOME/.config" "$HOME/.config/omarchy" "$HOME/.config/omarchy/themes"; do
+                [[ ! -L $directory ]] || { echo "Refusing symlink: $directory" >&2; exit 1; }
+            done
+            mkdir -p -- "$(dirname -- "$target")"
+            mkdir -- "$target"
+            tar -C "$root" --exclude='./.*' --exclude='*/.grokbot-test-*' -cf - . |
+                tar -C "$target" -xf -
+        else
+            echo 'Dry-run: no files written. Use --yes to install.'
+        fi
+        echo 'omarchy-theme-set grokbot'
+        ;;
+    uninstall)
+        printf 'Remove only %s\n' "$target"
+        if $write; then
+            # Refuse redirected parent directories and a theme symlink.
+            for directory in "$HOME/.config" "$HOME/.config/omarchy" "$HOME/.config/omarchy/themes" "$target"; do
+                [[ ! -L $directory ]] || { echo "Refusing symlink: $directory" >&2; exit 1; }
+            done
+            rm -rf -- "$target"
+        else
+            echo 'Dry-run: no files removed. Use --yes to uninstall.'
+        fi
+        ;;
+    doctor)
+        for dependency in bash python3 omarchy-theme-set hyprctl grokbot xdg-open grim slurp wl-copy jq shellcheck; do
+            if command -v "$dependency" >/dev/null 2>&1; then
+                printf 'OK      %s\n' "$dependency"
+            else
+                printf 'MISSING %s (optional unless its feature is used)\n' "$dependency"
+            fi
+        done
+        if command -v hyprctl >/dev/null 2>&1 && command -v python3 >/dev/null 2>&1; then
+            clients=$(hyprctl clients -j 2>/dev/null) || clients=''
+            if [[ -n $clients ]]; then
+                # Python prints the literal Hyprland variable name.
+                # shellcheck disable=SC2016
+                printf '%s' "$clients" | python3 -c '
+import json, sys
+try:
+    clients = json.load(sys.stdin)
+    matches = [c for c in clients if "grok" in " ".join(str(c.get(k, "")) for k in ("class", "initialClass", "title")).lower()]
+    if matches:
+        for c in matches:
+            print("Detected candidate app class:", c.get("class", ""), "| title:", c.get("title", ""))
+        print("Review the candidates; set $grokbot_class to the exact app class (escape regex punctuation).")
+    else:
+        print("No Grok candidate open. Open your app and rerun doctor. Active classes:")
+        for value in sorted({str(c.get("class", "")) for c in clients}): print(value)
+except (ValueError, TypeError, AttributeError):
+    print("Could not parse hyprctl clients JSON; inspect hyprctl clients -j manually.")
+'
+            else
+                echo 'No live Hyprland session response; open the app and run hyprctl clients -j.'
+            fi
+        else
+            echo 'Class detection needs hyprctl, python3, and a live Hyprland session. Run hyprctl clients -j on your desktop.'
+        fi
+        ;;
+    help|--help|-h)
+        echo 'Usage: bin/omarchi-grokbot {install|uninstall|doctor} [--yes]'
+        echo 'Install/uninstall are dry-run by default. Theme selection is always manual.'
+        ;;
+    *) echo "Unknown command: $command_name" >&2; exit 2 ;;
+esac
