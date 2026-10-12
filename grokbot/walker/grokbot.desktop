@@ -2,7 +2,7 @@
 Type=Application
 Name=Grok Bot
 Comment=Open the community flight deck companion
-Exec=/bin/bash -c "exec bash ~/.config/omarchy/current/theme/grokbot/waybar/grokbot-open.sh"
+Exec=/bin/bash -c "d=~/.local/state/omarchy/current/theme; [ -d $d/grokbot ] || d=~/.config/omarchy/current/theme; exec bash $d/grokbot/waybar/grokbot-open.sh"
 Icon=applications-science
 Terminal=false
 Categories=Utility;

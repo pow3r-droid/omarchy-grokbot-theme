@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.1 — 2026-10-11
+
+- Docs: Omarchy 4 ignores Lua in git-installed themes, so the one-line `dofile` in `~/.config/hypr/hyprland.lua` is required.
+- Walker launcher resolves the Omarchy 4 state theme path with fallback.
+
 ## v1.1.0 — 2026-10-11
 
 - Omarchy 4 support: Lua integration `grokbot/hyprland/grokbot.lua`, auto-loaded from the theme's `hyprland.lua` (no user config edit).

@@ -32,19 +32,19 @@ omarchy-theme-set grokbot
 
 ## Omarchy 4 (current) — native integration
 
-Tested against Omarchy 4.0.4 / Hyprland 0.56 (Lua config). After `omarchy theme install` and selecting **grokbot**, the theme's own `hyprland.lua` (which Omarchy 4 loads automatically) loads `grokbot/hyprland/grokbot.lua`. **No edit to your config is needed.**
-
-- **Super+G** toggles the Grok Bot panel (`special:grokbot`). Windows of class `grok-bot` float, centered, at 80%×70%. This replaces Omarchy's default *Toggle window grouping* on Super+G.
-- **Super+Shift+G** copies a region screenshot to the clipboard (`grim` + `slurp` + `wl-copy`). This replaces Omarchy's default *Signal* launcher on Super+Shift+G.
-- Different window class: set `GROKBOT_CLASS` in your Hyprland environment. Disable the integration with `GROKBOT_DISABLE=1`.
-- Launcher: `install -Dm644 ~/.local/state/omarchy/current/theme/grokbot/walker/grokbot.desktop ~/.local/share/applications/grokbot.desktop`
-- Keep it current: `omarchy theme update`.
-
-If you use a theme override that skips the theme's `hyprland.lua`, add this one line at the end of `~/.config/hypr/hyprland.lua`:
+Tested against Omarchy 4.0.4 / Hyprland 0.56 (Lua config). Omarchy 4 ignores `hyprland.lua` (and other Lua/terminal configs) in themes installed from a git repo, so after `omarchy theme install` and selecting **grokbot**, add this **one line** at the end of `~/.config/hypr/hyprland.lua` (back it up first), then run `hyprctl reload`:
 
 ```lua
 pcall(dofile, os.getenv("HOME") .. "/.local/state/omarchy/current/theme/grokbot/hyprland/grokbot.lua")
 ```
+
+(For a manual local copy, the theme's own `hyprland.lua` loads it automatically.)
+
+- **Super+G** toggles the Grok Bot panel (`special:grokbot`). Windows of class `grok-bot` float, centered, at 80%×70%. This replaces Omarchy's default *Toggle window grouping* on Super+G.
+- **Super+Shift+G** copies a region screenshot to the clipboard (`grim` + `slurp` + `wl-copy`). This replaces Omarchy's default *Signal* launcher on Super+Shift+G.
+- Different window class: set `GROKBOT_CLASS` in your Hyprland environment. Disable the integration with `GROKBOT_DISABLE=1`.
+- Launcher: `install -Dm644 ~/.local/state/omarchy/current/theme/grokbot/walker/grokbot.desktop ~/.local/share/applications/grokbot.desktop` (skip it if the Grok Bot app already has a launcher entry)
+- Keep it current: `omarchy theme update`.
 
 **Bar widget:** Omarchy 4 replaced Waybar with `omarchy-shell`. Its bar accepts widgets only as separate QML plugins (a git repo installed with `omarchy plugin add`), not from themes, so this theme ships no Omarchy 4 bar widget. The `grokbot/waybar/` files apply to Omarchy 3 only.
 
