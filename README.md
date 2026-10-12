@@ -46,7 +46,7 @@ pcall(dofile, os.getenv("HOME") .. "/.local/state/omarchy/current/theme/grokbot/
 - Launcher: `install -Dm644 ~/.local/state/omarchy/current/theme/grokbot/walker/grokbot.desktop ~/.local/share/applications/grokbot.desktop` (skip it if the Grok Bot app already has a launcher entry)
 - Keep it current: `omarchy theme update`.
 
-**Bar widget:** Omarchy 4 replaced Waybar with `omarchy-shell`. Its bar accepts widgets only as separate QML plugins (a git repo installed with `omarchy plugin add`), not from themes, so this theme ships no Omarchy 4 bar widget. The `grokbot/waybar/` files apply to Omarchy 3 only.
+**Bar widget:** Omarchy 4 replaced Waybar with `omarchy-shell`, and its bar only takes widgets as separate plugins, not from themes. Install the companion plugin [omarchy-grokbot-plugin](https://github.com/pow3r-droid/omarchy-grokbot-plugin) with `omarchy plugin add https://github.com/pow3r-droid/omarchy-grokbot-plugin --enable`. The `grokbot/waybar/` files apply to Omarchy 3 only.
 
 ## Omarchy 3 (legacy)
 
